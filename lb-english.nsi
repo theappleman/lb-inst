@@ -39,30 +39,25 @@ InstallDir "C:\KEY\リトルバスターズ！"
 ; Request application privileges for Windows Vista
 RequestExecutionLevel user
 
-PageEx license
-  Caption ": Readme"
-  PageCallbacks licenseImage
-PageExEnd
 Page directory directoryImage "" checkInstDir
 Page components componentsImage "" warnForSEEN
 Page instfiles instfilesImage
 Page custom installedPage installedPageLeave
 
-LicenseData readme.txt
-LicenseText "Welcome to the Little Busters! English translation setup!" "Next >"
 ComponentText "It's possible to patch only the images or only the scripts." " " "Please select the files you want to install."
 DirText "Select the installation directory of Little Busters!$\n$\nThis installer does not make a backup of the changed files, you will have to reinstall Little Busters! to uninstall this patch."
 MiscButtonText "" "" "" "Done!"
 
 Section "Images" SecImg
   SetOutPath "$INSTDIR\G00"
-  File G00\*
+  File G00\*.g00
 SectionEnd
 
 
 Section "Script files" SecSEEN
   SetOutPath "$INSTDIR"
-  File Script\*
+  File Script\*.TXT
+  File Script\GAMEEXE.INI
 SectionEnd
 
 
@@ -102,14 +97,11 @@ FunctionEnd
 
 
 
-Function licenseImage
-  !insertmacro BIMAGE "img\img01.bmp"
-FunctionEnd
 Function componentsImage
   !insertmacro BIMAGE "img\img08.bmp"
 FunctionEnd
 Function directoryImage
-  !insertmacro BIMAGE "img\img07.bmp"
+  !insertmacro BIMAGE "img\img01.bmp"
 FunctionEnd
 Function instfilesImage
   !insertmacro BIMAGE "img\img02.bmp"
@@ -140,3 +132,4 @@ Function installedPageLeave
     Exec '"$INSTDIR\REALLIVE.EXE"'
   ${EndIf}
 FunctionEnd
+
