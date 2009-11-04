@@ -15,7 +15,7 @@ final = ""
 # End configuration
 
 exit if base == "" or final == "" or vaconv !~ /vaconv(\.exe)?$/
-require 'ftools'
+require 'fileutils'
 temp = final + File::SEPARATOR + "temp"
 Dir.mkdir(final) unless File.exists?(final) and File.directory?(final)
 Dir.mkdir(temp) unless File.exists?(temp) and File.directory?(temp)
@@ -29,9 +29,9 @@ dir.each { |e|
     sub.each { |l|
       if l =~ /\.png$/
 	bm = full + File::SEPARATOR + l
-	File.copy(bm, temp)
+	FileUtils.cp(bm, temp)
 	bn = full + File::SEPARATOR + "xml" + File::SEPARATOR + l[/^(.*?)\.png/, 1] + ".xml"
-	File.copy(bn, temp) if File.exists?(bn) and File.file?(bn) and File.readable?(bn)
+	FileUtils.cp(bn, temp) if File.exists?(bn) and File.file?(bn) and File.readable?(bn)
 
 	img = temp + File::SEPARATOR + l
 	system vaconv, vaconvopts, "-d", final, img
