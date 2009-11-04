@@ -1,5 +1,5 @@
 
-!define VERSION "0.5"
+!define VERSION "1.0"
 
 
 !include "Sections.nsh"
@@ -44,7 +44,7 @@ Page components componentsImage "" warnForSEEN
 Page instfiles instfilesImage
 Page custom installedPage installedPageLeave
 
-ComponentText "It's possible to patch only the images or only the scripts." " " "Please select the files you want to install."
+ComponentText "It's possible to patch only the images or only the scripts. The subtitles are optional." " " "Please select the files you want to install."
 DirText "Select the installation directory of Little Busters!$\n$\nThis installer does not make a backup of the changed files, you will have to reinstall Little Busters! to uninstall this patch."
 MiscButtonText "" "" "" "Done!"
 
@@ -60,6 +60,11 @@ Section "Script files" SecSEEN
   File Script\GAMEEXE.INI
 SectionEnd
 
+Section "Subtitles" SecSub
+  SetOutPath "$INSTDIR\MOV"
+  File op00.ass
+SectionEnd
+
 
 Function warnForSEEN
   !insertmacro SectionFlagIsSet ${SecSEEN} ${SF_SELECTED} Seen SeenUN
@@ -71,10 +76,13 @@ Function warnForSEEN
     ${EndIf}
     Goto Img
   SeenUn:
+  !insertmacro SectionFlagIsSet ${SecSub} ${SF_SELECTED} Sub SubUN
+  SubUN:
   !insertmacro SectionFlagIsSet ${SecImg} ${SF_SELECTED} Img ImgUN
   ImgUN:
     MessageBox MB_OK "Nothing selected..."
     Abort
+  Sub:
   Img:
 FunctionEnd
 
