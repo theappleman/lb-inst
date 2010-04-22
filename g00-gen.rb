@@ -21,7 +21,7 @@ Dir.mkdir(final) unless File.exists?(final) and File.directory?(final)
 Dir.mkdir(temp) unless File.exists?(temp) and File.directory?(temp)
 vaconvopts = "--g00=2"
 
-dir = Dir.entries(base) - %w[. .. .svn .git .svn-index Templates Trial\ Edition]
+dir = Dir.entries(base) - %w[. .. .svn .git .svn-index Templates Trial\ Edition EX]
 dir.each { |e|
   full = base + File::SEPARATOR + e
   if File.directory?(full)
