@@ -13,7 +13,7 @@ metalink \
 	--publisher-name=fluffy \
 	--type=static --upgrade=install \
 	--description="$desc" --version="$vers" \
-	--origin=http://lb.applehq.eu/ \
+	--origin="http://lb.applehq.eu/$1.metalink" \
 	--create-torrent=udp://tracker.openbittorrent.com:80 \
-	"$1"
+	 "$1" lb-english-all.exe.mirrors
 #	--publisher-url="http://tlwiki.tsukuru.info/index.php?title\=Little_Busters!" \
