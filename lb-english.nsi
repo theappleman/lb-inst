@@ -1,5 +1,5 @@
 
-!define VERSION "2.0-rc1"
+!define VERSION "5.0-rc2"
 
 
 !include "Sections.nsh"
