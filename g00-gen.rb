@@ -16,7 +16,7 @@ final = ""
 
 exit if base == "" or final == "" or vaconv !~ /vaconv(\.exe)?$/
 require 'fileutils'
-temp = final + File::SEPARATOR + "temp"
+temp = "/tmp" + File::SEPARATOR + "lbimages.tmp"
 Dir.mkdir(final) unless File.exists?(final) and File.directory?(final)
 Dir.mkdir(temp) unless File.exists?(temp) and File.directory?(temp)
 vaconvopts = "--g00=2"
