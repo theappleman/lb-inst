@@ -22,7 +22,7 @@ Dir.mkdir(temp) unless File.exists?(temp) and File.directory?(temp)
 vaconvopts = "--g00=2"
 
 dir = Dir.entries(base) - %w[. .. .svn .git .svn-index Templates Trial\ Edition EX]
-dir.each { |e|
+dir.push("EX").each { |e|
   full = base + File::SEPARATOR + e
   if File.directory?(full)
     sub = Dir.entries(full) - %w[. .. .svn .git .svn-index]

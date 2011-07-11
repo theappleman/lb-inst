@@ -1,5 +1,5 @@
 
-!define VERSION "5.5"
+!define VERSION "5.5-ex"
 
 
 !include "Sections.nsh"
@@ -34,7 +34,7 @@ AddBrandingImage left 100
 
 ; The default installation directory
 ; (Uhm... Unicode?)
-InstallDir "C:\KEY\リトルバスターズ！"
+InstallDir "C:\KEY\リトルバスターズ！ＥＸ"
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel user
@@ -51,6 +51,7 @@ MiscButtonText "" "" "" "Done!"
 Section "Images" SecImg
   SetOutPath "$INSTDIR\G00"
   File G00\*.g00
+  File g00\*.g00
 SectionEnd
 
 
@@ -58,12 +59,16 @@ Section "Script files" SecSEEN
   SetOutPath "$INSTDIR"
   File Script\*.TXT
   File Script\GAMEEXE.INI
+  SetOutPath "$INSTDIR\MANUAL"
+  File Manual\gun.htm
+  SetOutPath "$INSTDIR\MANUAL\image"
+  File Manual\image\onoff_gun2.jpg
 SectionEnd
 
-Section "Subtitles" SecSub
-  SetOutPath "$INSTDIR\MOV"
-  File op00.ass
-SectionEnd
+#Section "Subtitles" SecSub
+#  SetOutPath "$INSTDIR\MOV"
+#  File op00.ass
+#SectionEnd
 
 
 Function warnForSEEN
@@ -76,13 +81,13 @@ Function warnForSEEN
     ${EndIf}
     Goto Img
   SeenUn:
-  !insertmacro SectionFlagIsSet ${SecSub} ${SF_SELECTED} Sub SubUN
-  SubUN:
+#  !insertmacro SectionFlagIsSet ${SecSub} ${SF_SELECTED} Sub SubUN
+#  SubUN:
   !insertmacro SectionFlagIsSet ${SecImg} ${SF_SELECTED} Img ImgUN
   ImgUN:
     MessageBox MB_OK "Nothing selected..."
     Abort
-  Sub:
+#  Sub:
   Img:
 FunctionEnd
 
