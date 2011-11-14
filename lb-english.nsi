@@ -34,7 +34,13 @@ AddBrandingImage left 100
 
 ; The default installation directory
 ; (Uhm... Unicode?)
-InstallDir "C:\KEY\リトルバスターズ！"
+Function .onGUIInit
+  ReadRegStr $INSTDIR HKLM "KEY\リトルバスターズ！"
+  StrCmp $INSTDIR "" 0 Set
+    MessageBox MB_OK "We could not find your Little Busters! installation by " \
+    "automatic methods."
+  Set:
+FunctionEnd
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel user
@@ -56,7 +62,8 @@ SectionEnd
 
 Section "Script files" SecSEEN
   SetOutPath "$INSTDIR"
-  File Script\*.TXT
+  Delete "$INSTDIR\SEEN*.TXT"
+  File Script\SEEN.TXT
   File Script\GAMEEXE.INI
 SectionEnd
 

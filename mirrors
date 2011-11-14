@@ -1,4 +1,2 @@
-uk 50 http://lb.applehq.eu/
-nl 75 http://dl.blicky.net/lb/
-us 80 http://fluffymirus.nfshost.com/
-uk 60 rsync://applehq.eu/mirror/lb/
+fr 75 http://dl.blicky.net/lb/
+uk 60 rsync://applehq.eu/lb/
