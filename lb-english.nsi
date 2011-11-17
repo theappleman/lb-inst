@@ -1,5 +1,5 @@
 
-!define VERSION "5.5"
+!define VERSION "6.0-pre1"
 
 
 !include "Sections.nsh"

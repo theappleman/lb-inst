@@ -13,5 +13,3 @@ metalink \
 	--description="$desc" --version="$vers" \
 	--origin="http://lb.applehq.eu/$1.metalink" \
 	 "$1" mirrors
-#--create-torrent=udp://tracker.openbittorrent.com:80 \
-#	--publisher-url="http://tlwiki.tsukuru.info/index.php?title\=Little_Busters!" \
