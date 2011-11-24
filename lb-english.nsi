@@ -4,9 +4,9 @@
 !if ${VER} == "EX"
 !define RITOEXT "ƒdƒw"
 !define VERSIONEXT "ex-"
-!define ONAME "${LB} Ecstacy"
+!define ONAME "${LB} Ecstasy"
 !define Sc "ex"
-!elseif ${VER} == "ME"
+!else if ${VER} == "ME"
 !define RITOEXT "_ME_ALL"
 !define VERSIONEXT "me-"
 !define ONAME "${LB} Memorial Edition"
@@ -18,7 +18,7 @@
 !define Sc "Script"
 !endif
 
-!define VERSION "6.0-pre1"
+!define VERSION "6.0-pre2"
 !define ENAME "${ONAME} English"
 
 !include "Sections.nsh"
