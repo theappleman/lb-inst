@@ -1,5 +1,5 @@
 
-!define VERSION "5.5-me"
+!define VERSION "5.5"
 
 
 !include "Sections.nsh"
@@ -8,9 +8,9 @@
 !include "FileFunc.nsh"
 !insertmacro DirState
 
-Name "Little Busters! English"
-OutFile "lb-english-${VERSION}.exe"
-BrandingText "lb-english v${VERSION}"
+Name "Little Busters! English Memorial Edition"
+OutFile "lb-english-me-${VERSION}.exe"
+BrandingText "lb-english-me v${VERSION}"
 Icon LB.ico
 XPStyle on
 WindowIcon off
@@ -45,7 +45,7 @@ Page instfiles instfilesImage
 Page custom installedPage installedPageLeave
 
 ComponentText "It's possible to patch only the images or only the scripts. The subtitles are optional." " " "Please select the files you want to install."
-DirText "Select the installation directory of Little Busters!$\n$\nThis installer does not make a backup of the changed files, you will have to reinstall Little Busters! to uninstall this patch."
+DirText "Select the installation directory of Little Busters! Memorial Edition.$\n$\nThis installer does not make a backup of the changed files, you will have to reinstall Little Busters! Memorial Edition to uninstall this patch."
 MiscButtonText "" "" "" "Done!"
 
 Section "Images" SecImg
@@ -128,7 +128,7 @@ Function installedPage
   ${EndIf}
   ${NSD_CreateLabel} 0 0 100% 12u "All done"
   Pop $Lbl1
-  ${NSD_CreateCheckBox} 0 13u 100% -13u "Play Little Busters!" 
+  ${NSD_CreateCheckBox} 0 13u 100% -13u "Play Little Busters! Memorial Edition" 
   Pop $Chk
   nsDialogs::Show
 FunctionEnd
