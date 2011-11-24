@@ -21,7 +21,6 @@
 !define VERSION "6.0-pre1"
 !define ENAME "${ONAME} English"
 
-
 !include "Sections.nsh"
 !include "nsDialogs.nsh"
 !include "LogicLib.nsh"
@@ -81,6 +80,9 @@ Section "Images" SecImg
   File G00\*.g00
 !ifdef VER
   File EG00\*.g00
+!if ${VER} == "EX"
+  File xg00\*.g00
+!endif
 !endif
 SectionEnd
 
@@ -90,13 +92,18 @@ Section "Script files" SecSEEN
   Delete "$INSTDIR\SEEN*.TXT"
   File ${Sc}\SEEN.TXT
   File ${Sc}\GAMEEXE.INI
+!if ${VER} == "EX"
+  SetOutPath "$INSTDIR\MANUAL"
+  File Manual\gun.htm
+  SetOutPath "$INSTDIR\MANUAL\image"
+  File Manual\image\onoff_gun2.jpg
+!endif
 SectionEnd
 
 Section "Subtitles" SecSub
   SetOutPath "$INSTDIR\MOV"
   File /nonfatal ${Sc}\op00.ass
 SectionEnd
-
 
 Function warnForSEEN
   !insertmacro SectionFlagIsSet ${SecSEEN} ${SF_SELECTED} Seen SeenUN
