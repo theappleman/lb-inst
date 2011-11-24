@@ -1,5 +1,25 @@
+!define LB "Little Busters!"
+!define RITO "リトルバスターズ！"
+
+!if ${VER} == "EX"
+!define RITOEXT "ヅヘ"
+!define VERSIONEXT "ex-"
+!define ONAME "${LB} Ecstacy"
+!define Sc "ex"
+!elseif ${VER} == "ME"
+!define RITOEXT "_ME_ALL"
+!define VERSIONEXT "me-"
+!define ONAME "${LB} Memorial Edition"
+!define Sc "me"
+!else
+!define RITOEXT ""
+!define VERSIONEXT ""
+!define ONAME "${LB}"
+!define Sc "Script"
+!endif
 
 !define VERSION "6.0-pre1"
+!define ENAME "${ONAME} English"
 
 
 !include "Sections.nsh"
@@ -8,9 +28,9 @@
 !include "FileFunc.nsh"
 !insertmacro DirState
 
-Name "Little Busters! English"
-OutFile "lb-english-${VERSION}.exe"
-BrandingText "lb-english v${VERSION}"
+Name "${ENAME}"
+OutFile "lb-english-${VERSIONEXT}${VERSION}.exe"
+BrandingText "${ENAME} v${VERSION}"
 Icon LB.ico
 XPStyle on
 WindowIcon off
@@ -35,10 +55,12 @@ AddBrandingImage left 100
 ; The default installation directory
 ; (Uhm... Unicode?)
 Function .onGUIInit
-  ReadRegStr $INSTDIR HKLM "KEY\リトルバスターズ！"
+  ReadRegStr $INSTDIR HKCU "Software\KEY\${RITO}${RITOEXT}" "DAT_FOLDER"
   StrCmp $INSTDIR "" 0 Set
-    MessageBox MB_OK "We could not find your Little Busters! installation by " \
-    "automatic methods."
+    MessageBox MB_OK "Could not find your ${ONAME} installation directory by an automatic method.$\n\
+    This can happen if ${ONAME} is not installed correctly, or if the registry has been modified.$\n\
+    Please specify it manually."
+    StrCpy $INSTDIR "C:\KEY\${RITO}${RITOEXT}"
   Set:
 FunctionEnd
 
@@ -51,25 +73,28 @@ Page instfiles instfilesImage
 Page custom installedPage installedPageLeave
 
 ComponentText "It's possible to patch only the images or only the scripts. The subtitles are optional." " " "Please select the files you want to install."
-DirText "Select the installation directory of Little Busters!$\n$\nThis installer does not make a backup of the changed files, you will have to reinstall Little Busters! to uninstall this patch."
+DirText "Select the installation directory of ${ONAME}.$\n$\nThis installer does not make a backup of the changed files, you will have to reinstall ${ONAME} to uninstall this patch."
 MiscButtonText "" "" "" "Done!"
 
 Section "Images" SecImg
   SetOutPath "$INSTDIR\G00"
   File G00\*.g00
+!ifdef VER
+  File EG00\*.g00
+!endif
 SectionEnd
 
 
 Section "Script files" SecSEEN
   SetOutPath "$INSTDIR"
   Delete "$INSTDIR\SEEN*.TXT"
-  File Script\SEEN.TXT
-  File Script\GAMEEXE.INI
+  File ${Sc}\SEEN.TXT
+  File ${Sc}\GAMEEXE.INI
 SectionEnd
 
 Section "Subtitles" SecSub
   SetOutPath "$INSTDIR\MOV"
-  File op00.ass
+  File /nonfatal ${Sc}\op00.ass
 SectionEnd
 
 
@@ -98,7 +123,7 @@ Function checkInstDir
   !insertmacro ClearSectionFlag ${SecImg} ${SF_RO}
   !insertmacro SelectSection ${SecImg}
   IfFileExists "$INSTDIR\REALLIVE.EXE" Good
-    MessageBox MB_OK "Please select the installation directory of Little Busters!"
+    MessageBox MB_OK "That is not a valid installation directory.$\nPlease select the installation directory of ${ONAME}"
     Abort
   Good:
   IfFileExists "$INSTDIR\G00" Good2
@@ -135,7 +160,7 @@ Function installedPage
   ${EndIf}
   ${NSD_CreateLabel} 0 0 100% 12u "All done"
   Pop $Lbl1
-  ${NSD_CreateCheckBox} 0 13u 100% -13u "Play Little Busters!" 
+  ${NSD_CreateCheckBox} 0 13u 100% -13u "Play ${ENAME}"
   Pop $Chk
   nsDialogs::Show
 FunctionEnd

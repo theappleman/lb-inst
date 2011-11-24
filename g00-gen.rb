@@ -11,6 +11,7 @@
 base = ""
 vaconv = ""
 final = ""
+efinal = ""
 
 # End configuration
 
@@ -18,12 +19,14 @@ exit if base == "" or final == "" or vaconv !~ /vaconv(\.exe)?$/
 require 'fileutils'
 temp = "/tmp" + File::SEPARATOR + "lbimages.tmp"
 Dir.mkdir(final) unless File.exists?(final) and File.directory?(final)
+Dir.mkdir(efinal) unless File.exists?(efinal) and File.directory?(efinal)
 Dir.mkdir(temp) unless File.exists?(temp) and File.directory?(temp)
 vaconvopts = "--g00=2"
 
-dir = Dir.entries(base) - %w[. .. .svn .git .svn-index Templates Trial\ Edition EX]
+dir = Dir.entries(base) - %w[. .. .svn .git .svn-index Templates Trial\ Edition]
 dir.each { |e|
   full = base + File::SEPARATOR + e
+  fin = e =~ /^EX$/ ? efinal : final
   if File.directory?(full)
     sub = Dir.entries(full) - %w[. .. .svn .git .svn-index]
     sub.each { |l|
@@ -34,7 +37,7 @@ dir.each { |e|
 	FileUtils.cp(bn, temp) if File.exists?(bn) and File.file?(bn) and File.readable?(bn)
 
 	img = temp + File::SEPARATOR + l
-	system vaconv, vaconvopts, "-d", final, img
+	system vaconv, vaconvopts, "-d", fin, img
       end
     }
   end
