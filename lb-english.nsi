@@ -1,5 +1,5 @@
 
-!define VERSION "5.5"
+!define VERSION "6.0-pre1"
 
 
 !include "Sections.nsh"
@@ -34,7 +34,13 @@ AddBrandingImage left 100
 
 ; The default installation directory
 ; (Uhm... Unicode?)
-InstallDir "C:\KEY\リトルバスターズ！ＥＸ_ME_ALL"
+Function .onGUIInit
+  ReadRegStr $INSTDIR HKCU "Software\KEY\リトルバスターズ！_ME_ALL" "DAT_FOLDER"
+  StrCmp $INSTDIR "" 0 Set
+    MessageBox MB_OK "Could not find your Little Busters! Memorial Edition installation directory by an automatic method.$\nThis can happen if Little Busters! Memorial Edition is not installed correctly, or if the registry has been modified.$\nPlease specify it manually."
+    StrCpy $INSTDIR "C:\KEY\リトルバスターズ！_ME_ALL"
+  Set:
+FunctionEnd
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel user
@@ -91,7 +97,7 @@ Function checkInstDir
   !insertmacro ClearSectionFlag ${SecImg} ${SF_RO}
   !insertmacro SelectSection ${SecImg}
   IfFileExists "$INSTDIR\REALLIVE.EXE" Good
-    MessageBox MB_OK "Please select the installation directory of Little Busters!"
+    MessageBox MB_OK "That is not a valid installation directory.$\nPlease select the installation directory of Little Busters! Memorial Edition."
     Abort
   Good:
   IfFileExists "$INSTDIR\G00" Good2
