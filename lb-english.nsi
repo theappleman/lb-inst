@@ -1,8 +1,10 @@
 !define LB "Little Busters!"
+!define VERSION "6.0-pre5"
+
 !define RITO "リトルバスターズ！"
 
 !if ${VER} == "EX"
-!define RITOEXT "ヅヘ"
+!define RITOEXT "ＥＸ"
 !define VERSIONEXT "ex-"
 !define ONAME "${LB} Ecstasy"
 !define Sc "ex"
@@ -18,7 +20,6 @@
 !define Sc "Script"
 !endif
 
-!define VERSION "6.0-pre2"
 !define ENAME "${ONAME} English"
 
 !include "Sections.nsh"
