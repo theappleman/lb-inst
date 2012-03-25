@@ -1,5 +1,5 @@
 !define LB "Little Busters!"
-!define VERSION "6.0-pre5"
+!define VERSION "7.0-pre1"
 
 !define RITO "リトルバスターズ！"
 
@@ -7,12 +7,12 @@
 !define RITOEXT "ＥＸ"
 !define VERSIONEXT "ex-"
 !define ONAME "${LB} Ecstasy"
-!define Sc "ex"
+!define Sc "Script/ex"
 !else if ${VER} == "ME"
 !define RITOEXT "_ME_ALL"
 !define VERSIONEXT "me-"
 !define ONAME "${LB} Memorial Edition"
-!define Sc "me"
+!define Sc "Script/me"
 !else
 !define RITOEXT ""
 !define VERSIONEXT ""
@@ -21,6 +21,7 @@
 !endif
 
 !define ENAME "${ONAME} English"
+!define Sn "${Sc}/snapshots"
 
 !include "Sections.nsh"
 !include "nsDialogs.nsh"
@@ -91,8 +92,8 @@ SectionEnd
 Section "Script files" SecSEEN
   SetOutPath "$INSTDIR"
   Delete "$INSTDIR\SEEN*.TXT"
-  File ${Sc}\SEEN.TXT
-  File ${Sc}\GAMEEXE.INI
+  File ${Sn}\SEEN.TXT
+  File ${Sn}\GAMEEXE.INI
 !if ${VER} == "EX"
   SetOutPath "$INSTDIR\MANUAL"
   File Manual\gun.htm
@@ -103,7 +104,7 @@ SectionEnd
 
 Section "Subtitles" SecSub
   SetOutPath "$INSTDIR\MOV"
-  File /nonfatal ${Sc}\op00.ass
+  File ${Sn}\op00.ass
 SectionEnd
 
 Function warnForSEEN
