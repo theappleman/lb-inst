@@ -1,6 +1,9 @@
 Little Busters! 
 ====
 
+Home Page: http://tlwiki.org/index.php?title=Little_Busters!
+IRC: [#fluffy@irc.synirc.net](irc://irc.synirc.net/fluffy)
+
 Getting Started
 ^^^^
 
