@@ -13,9 +13,11 @@ I recommend using virtualisation, as it gets messy.
 Setup your environment
 ----
 
-You need OCaml 3.09 (or any later point release) and a few dependancies.
+You need OCaml 3.09 (or any later 3.09 point release) and a few dependancies.
 OCaml is notoriously bad at keeping backwards compatibility, so pay attention
 to version numbers.
+
+The exact numbers are in the rldev INSTALL file.
 
 As per usual, the standard procedure for installing each is:
 	./configure
@@ -23,7 +25,15 @@ As per usual, the standard procedure for installing each is:
 	make install
 
 However, some OCaml packages also have "opt" targets which are also required
-for rldev.
+for rldev. Generally, it is safe to use:
+	make opt
+or
+	make all.opt
+on all of the packages. Only good things will come from that command; despite
+some giving off errors, nothing bad has happened.
+
+If you don't want all this hassle, but can boot CentOS kickstart files, take a
+look at fluffy-ks.cfg that should be accompanying this readme.
 
 Get rldev
 ----
@@ -62,10 +72,12 @@ Grab the images
 ^^^^
 Either grab the premade ones from the installer (open it with 7z) or remake
 your own.
+
 The vaconv utility in rldev doesn't seem to work on 64-bit systems, though.
 Edit up g00-gen.rb and it will plop the images into the right places.
 
-
+If grabbing the premade ones, be extra careful with the G00 and EG00
+directories. Take a look at the NSIS script for more info on why.
 
 Package it all up
 ^^^^
