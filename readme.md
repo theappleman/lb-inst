@@ -8,13 +8,40 @@ IRC: [#fluffy@irc.synirc.net](irc://irc.synirc.net/fluffy)
 This procedure is only tested in Linux (with 32-bit completely problem free).
 I recommend using virtualisation, as it gets messy.
 
+On windows, I recommend getting PuTTY instead of using the virtual machine's
+window, and also getting WinSCP or filezilla for transfers to and from the VM.
+
 ### Setup your environment
 
+#### Virtualisation
+##### On Windows
+
+* [VirtualBox](https://www.virtualbox.org/) (Recommended)
+* [VMWare Player](http://www.vmware.com/products/player/overview.html)
+
+##### On Linux
+
+* [Virt-manager](http://virt-manager.org/), [libvirt](http://libvirt.org/)
+  and/or [KVM](http://www.linux-kvm.org)
+* [Xen](http://xen.org)
+
+##### Guest
+Any 32 bit Linux distro. Grab a live CD.
+
+[Ubuntu](http://www.ubuntu.com/) is a good choice if you want no hassle, even
+if you decide to run it permanantly on bare metal.
+
+However, I prefer [Fedora](http://fedoraproject.org/).
+
+Whatever you choose, boot the live CD and install it to the virtual disk.
+
+#### OCaml
 You need OCaml 3.09 (or any later 3.09 point release) and a few dependancies.
 OCaml is notoriously bad at keeping backwards compatibility, so pay attention
 to version numbers.
 
-The exact numbers are in the rldev INSTALL file.
+The exact numbers are in the rldev INSTALL file, and exact download URLs can be
+found in the kickstart file.
 
 As per usual, the standard procedure for installing each is:
 >	./configure  
