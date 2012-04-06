@@ -35,6 +35,29 @@ However, I prefer [Fedora](http://fedoraproject.org/).
 
 Whatever you choose, boot the live CD and install it to the virtual disk.
 
+#### Cygwin
+[Cygwin](http://cygwin.org/)
+
+You need to pick quite a few packages from the installer. Don't worry, the
+installer is designed be run multiple times.
+
+#### Distro packages
+These packages, of any version, are available in Ubuntu, Fedora and Cygwin.
+Each might have subtlely different names, and may be hidden in very different
+categories.
+Install them.
+
+* gcc
+* gcc-c++
+* make
+* unzip
+* git
+* subversion
+* git-svn
+* libpng-devel
+* wget
+
+
 #### OCaml
 You need OCaml 3.09 (or any later 3.09 point release) and a few dependancies.
 OCaml is notoriously bad at keeping backwards compatibility, so pay attention
